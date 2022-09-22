@@ -21,6 +21,29 @@ nav {
     background: #f1f3f4;
     color: black;
     border-radius: 50%;
+    cursor: pointer; 
+}
+
+.tooltip{
+    position: relative;
+}
+
+.tooltip-text{
+    position: absolute;
+    left: 0;
+    top: 100%;
+    font-size: 0.78rem;
+    background: #323232;
+    color: white;
+    opacity: 80%;
+    padding: 5px;
+    white-space: nowrap;
+    border-radius: 5px;
+    visibility: hidden;
+}
+
+.tooltip:hover .tooltip-text{
+    visibility: visible;
 }
 
 .material-icons {
