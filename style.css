@@ -84,4 +84,12 @@ input:focus{
     margin-left: 10px;
 }
 
+.setting-area{
+    display: flex;
+}
+
+.profile-action-area{
+    display: flex;
+}
+
 
