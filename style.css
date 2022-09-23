@@ -7,6 +7,8 @@
     font-family: 'Roboto', sans-serif;
 }
 
+/*navbar starts here*/
+
 nav {
     display: flex;
     justify-content: space-between;
@@ -40,6 +42,7 @@ nav {
     white-space: nowrap;
     border-radius: 5px;
     visibility: hidden;
+    z-index: 1;
 }
 
 .tooltip:hover .tooltip-text{
@@ -48,6 +51,10 @@ nav {
 
 .material-icons {
     padding: 10px;
+}
+
+.material-icons menu{
+    margin-left: 4px;
 }
 
 .logo-area{
@@ -92,4 +99,44 @@ input:focus{
     display: flex;
 }
 
+/*navbar ends here*/
+
+/*main section starts here*/
+
+/*sidebar*/
+
+.sidebar{
+    color:#5f6368;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    left: 0;
+    width: 80px;
+    overflow-x: hidden;
+
+}
+
+.active{
+    background: #fef0c3;
+    border-radius: 50%;
+    color: black;
+}
+
+.sidebar-items{
+    padding: 3px 0;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-text{
+    color: #202124;
+    margin-left: 20px;
+    font-size: .875rem;
+    font-weight: 500;
+    width: 250px;
+}
+.sidebar-items:first-child{
+    margin-top: 5px;
+
+}
 
