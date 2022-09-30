@@ -143,8 +143,8 @@ input:focus{
 
 .form-container{
     max-width: 598px;
-    height: 46px;
     margin: 40px auto;
+    align-items: center;
     border: #a1a2a2 1px solid;
     border-radius: 8px;
 }
@@ -154,6 +154,18 @@ form{
     justify-content: space-between;
     box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
     height: 100%;
+    padding: 10px;
+}
+
+.form-container .note-title{
+    border: none;
+    font-size: 1rem;
+    height: 100%;
+    padding: 10px;
+    margin-left: 10px;
+    width: 100%;
+    margin-right: 10px;
+    padding-left: 10px;
 }
 
 .form-container .note-text{
@@ -161,10 +173,44 @@ form{
     font-size: 1rem;
     height: 100%;
     margin-left: 10px;
+    width: 100%;
+    padding: 10px;
+    margin-right: 10px;
+    padding-left: 10px;
 }
 
-.form-actions{
+.form-actions {
     display: flex;
+}
+
+.active-form .form-actions .icons{
+    display: flex;
+    color: #dadce0;
+}
+
+.small-icons{
+    color: black;
+    font-size: 1rem;
+}
+
+.active-form .form-actions{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.active-form form{
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    width: 100%;
+}
+
+.close-btn{
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
 }
 
 
