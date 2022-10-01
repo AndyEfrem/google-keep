@@ -213,4 +213,56 @@ form{
     cursor: pointer;
 }
 
+.notes{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.note{
+    background: white;
+    width: 240px;
+    height: 140px;
+    border: #a1a2a2 1px solid;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px;
+    position: relative;
+}
+
+.check-circle{
+    position: absolute;
+    left: -15px;
+    top: -15px;
+}
+
+.note .title{
+    width: 100%;
+    margin: 10px;
+}
+
+.note .text{
+    width: 100%;
+    margin:15px 10px;
+}
+
+.note .note-footer{
+    display: flex;
+    margin-top: 30px;
+}
+
+.note-footer .material-icons{
+    color: #5f6360;
+}
+
+.model {
+    position: fixed;
+    top: 0;
+    left: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+}
+
 
