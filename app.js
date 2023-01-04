@@ -14,7 +14,7 @@ class App {
         this.notes = [...this.notes, newNote];
     }
 
-}
+} 
 
 const note1 = {
     title: "Test note",
@@ -22,5 +22,5 @@ const note1 = {
 }
 
 const app = new App();
-app.addNotes(note1);
-console.log(app.note);
+
+

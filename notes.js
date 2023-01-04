@@ -8,8 +8,20 @@ class Note {
 
 class App {
     constructor(){
-        this.notes=[]
+        this.notes=[];
+        this.$activeForm = document.querySelector(".active-form");
+        this.$inactiveForm = document.querySelector(".inactive-form");
+        this.addEventListeners();  
     }
+    addEventListeners(){
+        document.body.addEventListener("click",(event) =>{
+            this.handleFormClick(event);
+        })
+    }
+    handleFormClick(event){
+        console.log(this.$activeForm.contains(event.target));
+    }
+    
     addNote({id, title, text}){
         const newNote = new Note(id,title, text);
         this.note = [...this.notes, newNote]
@@ -33,17 +45,10 @@ const note1= {
 }
 const updateNote= {
     title: "Updated Test note",
-    text : "Updated Text"
+    text : "Updated Text" 
 
 }
 
 const app = new App();
-app.addNote(0,note1)
-app.addNote(1,note1)
-app.addNote(2,note1)
-app.addNote(3,note1)
-console.log("Before editing", app.note );
-setTimeout(()=> {
-    app.editNote(2, updateNote);
-    console.log("After editing", app.note);
-},1000) 
+
+
