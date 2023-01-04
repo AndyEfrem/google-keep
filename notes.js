@@ -11,6 +11,8 @@ class App {
         this.notes=[];
         this.$activeForm = document.querySelector(".active-form");
         this.$inactiveForm = document.querySelector(".inactive-form");
+        this.noteTitle = document.querySelector(".note-title")
+        this.noteText = document.querySelector(".note-text")        
         this.addEventListeners();  
     }
     addEventListeners(){
@@ -19,7 +21,15 @@ class App {
         })
     }
     handleFormClick(event){
-        console.log(this.$activeForm.contains(event.target));
+        const isActiveFormClickedOn = this.$activeForm.contains(event.target);
+        const isInactiveFormClickedOn = this.$inactiveForm.contains(event.target);
+        
+        if(isInactiveFormClickedOn){
+            this.$inactiveForm.style.display = "none"
+            this.$activeForm.style.display = "block"
+            this.$noteText.focus();
+        }
+        
     }
     
     addNote({id, title, text}){
