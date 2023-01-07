@@ -13,6 +13,8 @@ class App {
         this.$inactiveForm = document.querySelector(".inactive-form");
         this.noteTitle = document.querySelector(".note-title")
         this.noteText = document.querySelector(".note-text")        
+        this.$noteTitle = document.querySelector("#note-title")
+        this.$noteText = document.querySelector("#note-text")       
         this.addEventListeners();  
     }
     addEventListeners(){
@@ -23,13 +25,25 @@ class App {
     handleFormClick(event){
         const isActiveFormClickedOn = this.$activeForm.contains(event.target);
         const isInactiveFormClickedOn = this.$inactiveForm.contains(event.target);
+        const title= this.$noteTitle.value;
+        const text =this.$noteText.value;
         
         if(isInactiveFormClickedOn){
-            this.$inactiveForm.style.display = "none"
-            this.$activeForm.style.display = "block"
-            this.$noteText.focus();
+            this.openActiveForm();  
+        }
+        else if(!isInactiveFormClickedOn && !isActiveFormClickedOn){
+            this.closeActiveForm();
         }
         
+    }
+    openActiveForm (){
+        this.$inactiveForm.style.display = "none"
+        this.$activeForm.style.display = "block"
+        this.$noteText.focus();
+    }
+    closeActiveForm (){
+        this.$inactiveForm.style.display = "block"
+        this.$activeForm.style.display = "none"
     }
     
     addNote({id, title, text}){
