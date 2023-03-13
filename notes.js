@@ -9,6 +9,8 @@ class Note {
 class App {
     constructor(){
         this.notes=[new Note("abc1", "test t", "test text")];
+        this.selectedNoteId = "";
+
         this.$activeForm = document.querySelector(".active-form");
         this.$inactiveForm = document.querySelector(".inactive-form");
         this.noteTitle = document.querySelector(".note-title")
@@ -19,7 +21,10 @@ class App {
         this.$form = document.querySelector("#form");
         this.$modal = document.querySelector(".modal");
         this.$modalForm = document.querySelector("#modal-form")
-         
+        this.$modalTitle = document.querySelector("#modal-title")
+        this.$modalText = document.querySelector("#modal-text")       
+        this.$closeModalForm =document.querySelector("#modal-btn")
+        
         this.addEventListeners();
         this.displayNotes();
         
@@ -31,6 +36,7 @@ class App {
             this.handleFormClick(event);
             this.closeModal(event);
             this.openModal(event);
+            this.handleArchiving(event);
         })
 
         this.$form.addEventListener("submit", (event) => {
@@ -40,7 +46,14 @@ class App {
             this.addNote({ title, text });
             this.closeActiveForm();
         })
+
+        this.$closeModalForm.addEventListener("click", (event) => {
+            event.preventDefault();
+            console.log("test")
+            //this.closeModal(event);
+        })
     }
+    
     handleFormClick(event){
         const isActiveFormClickedOn = this.$activeForm.contains(event.target);
         const isInactiveFormClickedOn = this.$inactiveForm.contains(event.target);
@@ -71,16 +84,35 @@ class App {
     }
 
     openModal(event){
-        if(event.target.closest(".note")){
+        const $selectedNote = event.target.closest(".note");
+        if($selectedNote && !event.target.closest(".archive")){ 
+            this.selectedNoteId = $selectedNote.id;
+            this.$modalTitle.value = ($selectedNote.children[1].innerHTML);
+            this.$modalText.value = ($selectedNote.children[2].innerHTML);
             this.$modal.classList.add("open-modal");
+        } else {
+            return;
         }
     }
 
     closeModal(event){
         const isModalFormClickedOn = this.$modalForm.contains(event.target);
+        const isCloseModalBtnClickedOn = this.$closeModalForm.contains(event.target);
         if(!isModalFormClickedOn && this.$modal.classList.contains("open-modal")){
+            this.editNote(this.selectedNoteId, {title: this.$modalTitle.value, text: this.$modalText.value});
             this.$modal.classList.remove("open-modal");
         }
+    }
+
+    handleArchiving(event){
+        const $selectedNote = event.target.closest(".note");
+        if($selectedNote && event.target.closest(".archive")){ 
+            this.selectedNoteId = $selectedNote.id;
+            this.deleteNote(this.selectedNoteId)
+        } else {
+            return; 
+        }
+
     }
 
     addNote({title, text}){
@@ -92,17 +124,19 @@ class App {
     }
 
     editNote(id,{title,text}){
-        this.notes.map(note => {
+        this.notes = this.notes.map((note) => {
             if(note.id == id){
-                note.title = title
-                note.text = text
+                note.title = title;
+                note.text = text;
             }
-
+            return note;
         });
+        this.displayNotes();
     }
 
-    deleteNotes(id) {
+    deleteNote(id) {
         this.notes = this.notes.filter((note) => note.id != id);
+        this.displayNotes();
     }
 
     handleMouseOverNote(element) {
@@ -156,7 +190,7 @@ class App {
                     </span>
                     <span class="tooltip-text">Add image</span>
                 </div>
-                <div class="tooltip">
+                <div class="tooltip archive">
                     <span class="material-icons hover small-icons">
                         archive
                     </span>
