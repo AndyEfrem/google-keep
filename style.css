@@ -18,7 +18,7 @@ nav {
     padding:8px;
     color: #5f6360;
 }
-
+ 
 .hover:hover{
     background: #f1f3f4;
     color: black;
@@ -134,7 +134,7 @@ input:focus{
     margin-left: 20px;
     font-size: .875rem;
     font-weight: 500;
-    width: 250px;
+    /* width: 250px; */
 }
 .sidebar-items:first-child{
     margin-top: 5px;
@@ -183,7 +183,7 @@ form{
     display: flex;
 }
 
-.active-form .form-actions .icons{
+.form-actions .icons{
     display: flex;
     color: #dadce0;
 }
@@ -192,22 +192,27 @@ form{
     display: none;
 }
 
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px;
+}
+
 .small-icons{
     color: black;
     font-size: 1rem;
 }
 
-.active-form .form-actions{
+.active-form .form-actions .icons{
     display: flex;
-    width: 100%;
-    justify-content: space-between;
 }
 
-.active-form form{
+.form .form-actions{
     display: flex;
-    flex-direction: column; 
-    align-items: center;
+    justify-content:space-between ;
     width: 100%;
+    margin-top: 5px;
 }
 
 .close-btn{
@@ -220,6 +225,8 @@ form{
 .notes{
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    padding: 0 50px; 
     
 }
 
@@ -232,12 +239,18 @@ form{
     padding: 10px;
     margin: 10px;
     position: relative;
+    cursor: pointer;   
 }
 
-.check-circle{
+.note:hover{
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+}
+
+.note .check-circle{
     position: absolute;
     left: -15px;
     top: -15px;
+    visibility: hidden;
 }
 
 .note .title{
@@ -252,7 +265,10 @@ form{
 
 .note .note-footer{
     display: flex;
-    margin-top: 30px;
+    margin-top: 15px;
+    padding: 0;
+    justify-content: center;
+    visibility: hidden; 
 }
 
 .note-footer .material-icons{
@@ -269,11 +285,23 @@ form{
     visibility: hidden;
   }
   
-  .modal-content {
+  .modal-content{
     width: 589px;
     position: relative;
-    top: 30%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+#modal-form {
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+    height: 100%;
+    padding: 10px;
+    background-color: white;
+    border-radius: 8px;
+}
+  .open-modal{
+    visibility: visible;
   }
 
