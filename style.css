@@ -109,7 +109,6 @@ input:focus{
     position: fixed;
     left: 0;
     top: 64px;
-    padding-left: 9px;
     color:#5f6368;
     display: flex;
     flex-direction: column;
@@ -134,19 +133,40 @@ input:focus{
     padding: 3px 0;
     display: flex;
     align-items: center;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+
+.sidebar-items:hover{
+    background-color: #f1f3f4;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+.sidebar-active-items:hover{
+    background-color: #fef0c3;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
 }
 
 .sidebar-items .sidebar-text{
     color: #202124;
     margin-left: 37px;
     font-size: .875rem;
-    font-weight: 500;
-    /* width: 250px; */
+    font-weight: 500;  
+}
+
+.sidebar-items .material-icons{
+    margin-left: 18px;
 }
 .sidebar-items:first-child{
     margin-top: 5px;
-
 }
+
+
+
+
 
 .form-container{
     max-width: 598px;

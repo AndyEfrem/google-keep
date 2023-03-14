@@ -26,6 +26,7 @@ class App {
         this.$modalText = document.querySelector("#modal-text")       
         this.$closeModalForm =document.querySelector("#modal-btn")
         this.$sidebar= document.querySelector(".sidebar")
+        this.$sidebarActiveItem = document.querySelector(".sidebar-active-items")
 
         this.addEventListeners();
         this.displayNotes();
@@ -169,11 +170,13 @@ class App {
         if(this.miniSidebar){
             this.$sidebar.style.width = "250px";
             this.$sidebar.classList.add("sidebar-hover");
+            this.$sidebarActiveItem.classList.add("side-bar-items");
             this.miniSidebar = false;
         }
         else{
             this.$sidebar.style.width = "80px";
             this.$sidebar.classList.remove("sidebar-hover");
+            this.$sidebarActiveItem.classList.remove("side-bar-items")
             this.miniSidebar = true;
             console.log(miniSidebar)
         }
