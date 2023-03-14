@@ -10,6 +10,7 @@ class App {
     constructor(){
         this.notes=[new Note("abc1", "test t", "test text")];
         this.selectedNoteId = "";
+        this.miniSidebar = true;
 
         this.$activeForm = document.querySelector(".active-form");
         this.$inactiveForm = document.querySelector(".inactive-form");
@@ -24,7 +25,8 @@ class App {
         this.$modalTitle = document.querySelector("#modal-title")
         this.$modalText = document.querySelector("#modal-text")       
         this.$closeModalForm =document.querySelector("#modal-btn")
-        
+        this.$sidebar= document.querySelector(".sidebar")
+
         this.addEventListeners();
         this.displayNotes();
         
@@ -50,7 +52,14 @@ class App {
         this.$closeModalForm.addEventListener("click", (event) => {
             event.preventDefault();
             console.log("test")
-            //this.closeModal(event);
+        })
+
+        this.$sidebar.addEventListener("mouseover", (event) => {
+            this.handleToggleSidebar();
+        })
+        
+        this.$sidebar.addEventListener("mouseout", (event) => {
+            this.handleToggleSidebar();
         })
     }
     
@@ -64,7 +73,7 @@ class App {
         if(isInactiveFormClickedOn){
             this.openActiveForm();  
         }
-        else if(!isActiveFormClickedOn){
+        else if(!isActiveFormClickedOn && !isInactiveFormClickedOn ){
             this.addNote({ title, text });
             this.closeActiveForm();
         }
@@ -98,7 +107,7 @@ class App {
     closeModal(event){
         const isModalFormClickedOn = this.$modalForm.contains(event.target);
         const isCloseModalBtnClickedOn = this.$closeModalForm.contains(event.target);
-        if(!isModalFormClickedOn && this.$modal.classList.contains("open-modal")){
+        if((!isModalFormClickedOn || isCloseModalBtnClickedOn) && this.$modal.classList.contains("open-modal")){
             this.editNote(this.selectedNoteId, {title: this.$modalTitle.value, text: this.$modalText.value});
             this.$modal.classList.remove("open-modal");
         }
@@ -154,6 +163,20 @@ class App {
         const $noteFooter = $note.querySelector(".note-footer")
         $checNote.style.visibility = "hidden";
         $noteFooter.style.visibility = "hidden";
+    }
+
+    handleToggleSidebar(){
+        if(this.miniSidebar){
+            this.$sidebar.style.width = "250px";
+            this.$sidebar.classList.add("sidebar-hover");
+            this.miniSidebar = false;
+        }
+        else{
+            this.$sidebar.style.width = "80px";
+            this.$sidebar.classList.remove("sidebar-hover");
+            this.miniSidebar = true;
+            console.log(miniSidebar)
+        }
     }
 
     displayNotes(){
